@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    direction: rtl;
+    font-family: 'minecraft', sans-serif;
+}
+
+#gameBoard {
+    display: grid;
+    grid-template-rows: repeat(30, 48px);
+    grid-template-columns: repeat(60, 48px);
+}
+
+.block {
+    width: 48px;
+    height: 48px;
+    display: block;
+}
+
+.row {
+    width: 100%;
+
+}
+
+.block:hover {
+    border: 1px solid
+}
+
+.sky {
+    background-color: #87CEEB;
+}
+
+.earth {
+    background: url("./elements/earth.webp");
+    background-size: contain;
+}
+
+.grass {
+    background: url("./elements/grass.webp");
+    background-size: contain;
+}
+
+.stone {
+    background: url("/elements/stone.webp");
+    background-size: contain;
+}
+
+.rock {
+    background: url("/elements/rock.webp");
+    background-size: contain;
+}
