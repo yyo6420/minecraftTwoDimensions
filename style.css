@@ -53,3 +53,13 @@ body {
     background: url("/elements/rock.webp");
     background-size: contain;
 }
+
+.treeTrunk {
+    background: url("/elements/treeTrunk.webp");
+    background-size: contain;
+}
+
+.leves {
+    background: url("/elements/leaves.webp");
+    background-size: contain;
+}
