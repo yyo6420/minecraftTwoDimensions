@@ -1,5 +1,3 @@
-const gameBoard = document.getElementById("gameBoard");
-
 const createSky = () => {
   for (let skyBlock = 1; skyBlock <= 1800; skyBlock++) {
     const div = document.createElement("div");
@@ -43,13 +41,17 @@ const createTree = () => {
   const block = document.getElementById(`block-${randomPlace}`);
   for (
     let treeTrunkBlock = 0;
-    treeTrunkBlock <= randomTreeTrunkHight;
+    treeTrunkBlock <= randomTreeTrunkHight + 5;
     treeTrunkBlock++
   ) {
     const trunkBlock = document.getElementById(
       `block-${randomPlace - 60 * treeTrunkBlock}`,
     );
-    trunkBlock.classList = "block treeTrunk";
+    if (treeTrunkBlock > randomTreeTrunkHight) {
+      trunkBlock.classList = "block leves";
+    } else {
+      trunkBlock.classList = "block treeTrunk";
+    }
   }
 
   block.classList = "block treeTrunk";
@@ -58,21 +60,64 @@ const createTree = () => {
     const leaf = document.getElementById(
       `block-${randomPlace - 60 * randomTreeTrunkHight + leaves}`,
     );
+    const leaf2 = document.getElementById(
+      `block-${randomPlace - 60 * (randomTreeTrunkHight + 1) + leaves}`,
+    );
+
+    if (leaves >= 1 && leaves <= 2) {
+      const leaf3 = document.getElementById(
+        `block-${randomPlace - 60 * (randomTreeTrunkHight + 2) + leaves}`,
+      );
+
+      const leaf4 = document.getElementById(
+        `block-${randomPlace - 60 * (randomTreeTrunkHight + 3) + leaves}`,
+      );
+
+      if (leaves === 1) {
+        const leaf5 = document.getElementById(
+          `block-${randomPlace - 60 * (randomTreeTrunkHight + 4) + leaves}`,
+        );
+        leaf5.classList = "block leves";
+      }
+
+      leaf3.classList = "block leves";
+      leaf4.classList = "block leves";
+    }
+
     leaf.classList = "block leves";
+    leaf2.classList = "block leves";
   }
 
   for (let leaves = 1; leaves <= 3; leaves++) {
     const leaf = document.getElementById(
       `block-${randomPlace - 60 * randomTreeTrunkHight - leaves}`,
     );
+    const leaf2 = document.getElementById(
+      `block-${randomPlace - 60 * (randomTreeTrunkHight + 1) - leaves}`,
+    );
+
+    if (leaves >= 1 && leaves <= 2) {
+      const leaf3 = document.getElementById(
+        `block-${randomPlace - 60 * (randomTreeTrunkHight + 2) - leaves}`,
+      );
+      const leaf4 = document.getElementById(
+        `block-${randomPlace - 60 * (randomTreeTrunkHight + 3) - leaves}`,
+      );
+
+      if (leaves === 1) {
+        const leaf5 = document.getElementById(
+          `block-${randomPlace - 60 * (randomTreeTrunkHight + 4) - leaves}`,
+        );
+        leaf5.classList = "block leves";
+      }
+
+      leaf3.classList = "block leves";
+      leaf4.classList = "block leves";
+    }
+
     leaf.classList = "block leves";
+    leaf2.classList = "block leves";
   }
-
-  const topTree = document.getElementById(
-    `block-${randomPlace - 60 * (randomTreeTrunkHight + 1)}`,
-  );
-//   topTree.classList = "block leves";
-
 };
 createSky();
 
