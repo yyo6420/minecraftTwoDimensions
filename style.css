@@ -73,3 +73,18 @@ body {
     background: url("/elements/gold.png");
     background-size: contain;
 }
+
+.toolsContainer {
+    position: fixed;
+    height: 100%;
+    width: 0.5rem;
+    top: 4rem;
+    right: 1rem;
+    padding: 0.5rem;
+}
+
+.toolsImage {
+    height: 2rem;
+    width: 2rem;
+    margin-bottom: 0.3rem;
+}
