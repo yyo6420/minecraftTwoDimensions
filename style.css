@@ -63,3 +63,13 @@ body {
     background: url("/elements/leaves.webp");
     background-size: contain;
 }
+
+.diamonds {
+    background: url("/elements/diamond.png");
+    background-size: contain;
+}
+
+.gold {
+    background: url("/elements/gold.png");
+    background-size: contain;
+}

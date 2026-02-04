@@ -37,8 +37,8 @@ const createRock = () => {
 
 const createTree = () => {
   const randomPlace = Math.floor(Math.random() * (596 - 544 + 1)) + 544;
-  const randomTreeTrunkHight = Math.floor(Math.random() * (5 - 2) + 2);
   const block = document.getElementById(`block-${randomPlace}`);
+  const randomTreeTrunkHight = Math.floor(Math.random() * (5 - 2) + 2);
   for (
     let treeTrunkBlock = 0;
     treeTrunkBlock <= randomTreeTrunkHight + 5;
@@ -119,14 +119,31 @@ const createTree = () => {
     leaf2.classList = "block leves";
   }
 };
-createSky();
 
-createGrass();
+const placeDiamondRandomly = () => {
+  for (let diamond = 1; diamond <= 10; diamond++) {
+    const randomPlace = Math.floor(Math.random() * (1680 - 901 + 1)) + 901;
+    const block = document.getElementById(`block-${randomPlace}`);
+    block.classList = "block diamonds";
+  }
+};
 
-createErth();
+const placeGoldRandomly = () => {
+  for (let goldBlock = 1; goldBlock <= 10; goldBlock++) {
+    const randomPlace = Math.floor(Math.random() * (1680 - 901 + 1)) + 901;
+    const block = document.getElementById(`block-${randomPlace}`);
+    block.classList = "block gold";
+  }
+};
 
-createStone();
-
-createRock();
-
-createTree();
+const sky = createSky();
+const grass = createGrass();
+const earth = createErth();
+const stone = createStone();
+const rock = createRock();
+const tree = createTree();
+const tree2 = createTree();
+const tree3 = createTree();
+const tree4 = createTree();
+const diamond = placeDiamondRandomly();
+const gold = placeGoldRandomly()
