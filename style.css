@@ -86,5 +86,9 @@ body {
 .toolsImage {
     height: 2rem;
     width: 2rem;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.toolsImage:hover {
+    cursor: grab;
 }

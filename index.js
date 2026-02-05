@@ -136,6 +136,10 @@ const placeGoldRandomly = () => {
   }
 };
 
+const changeCursor = (image) => {
+  document.body.style.cursor = `url(${image}) , auto`
+} 
+
 const sky = createSky();
 const grass = createGrass();
 const earth = createErth();
@@ -146,4 +150,4 @@ const tree2 = createTree();
 const tree3 = createTree();
 const tree4 = createTree();
 const diamond = placeDiamondRandomly();
-const gold = placeGoldRandomly()
+const gold = placeGoldRandomly();
