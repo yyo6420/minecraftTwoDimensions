@@ -1,3 +1,6 @@
+const gameBoard = document.getElementById("gameBoard");
+let currentCorsuer = "default";
+
 const createSky = () => {
   for (let skyBlock = 1; skyBlock <= 1800; skyBlock++) {
     const div = document.createElement("div");
@@ -48,7 +51,7 @@ const createTree = () => {
       `block-${randomPlace - 60 * treeTrunkBlock}`,
     );
     if (treeTrunkBlock > randomTreeTrunkHight) {
-      trunkBlock.classList = "block leves";
+      trunkBlock.classList = "block leaves";
     } else {
       trunkBlock.classList = "block treeTrunk";
     }
@@ -77,15 +80,15 @@ const createTree = () => {
         const leaf5 = document.getElementById(
           `block-${randomPlace - 60 * (randomTreeTrunkHight + 4) + leaves}`,
         );
-        leaf5.classList = "block leves";
+        leaf5.classList = "block leaves";
       }
 
-      leaf3.classList = "block leves";
-      leaf4.classList = "block leves";
+      leaf3.classList = "block leaves";
+      leaf4.classList = "block leaves";
     }
 
-    leaf.classList = "block leves";
-    leaf2.classList = "block leves";
+    leaf.classList = "block leaves";
+    leaf2.classList = "block leaves";
   }
 
   for (let leaves = 1; leaves <= 3; leaves++) {
@@ -108,15 +111,15 @@ const createTree = () => {
         const leaf5 = document.getElementById(
           `block-${randomPlace - 60 * (randomTreeTrunkHight + 4) - leaves}`,
         );
-        leaf5.classList = "block leves";
+        leaf5.classList = "block leaves";
       }
 
-      leaf3.classList = "block leves";
-      leaf4.classList = "block leves";
+      leaf3.classList = "block leaves";
+      leaf4.classList = "block leaves";
     }
 
-    leaf.classList = "block leves";
-    leaf2.classList = "block leves";
+    leaf.classList = "block leaves";
+    leaf2.classList = "block leaves";
   }
 };
 
@@ -137,8 +140,42 @@ const placeGoldRandomly = () => {
 };
 
 const changeCursor = (image) => {
-  document.body.style.cursor = `url(${image}) , auto`
-} 
+  document.body.style.cursor = `url(${image}) , auto`;
+  if (image === "/cursor/pickaxe.png") {
+    currentCorsuer = "pickaxe";
+  } else if (image === "/cursor/axe.png") {
+    currentCorsuer = "axe";
+  } else if (image === "/cursor/shovel.png") {
+    currentCorsuer = "shoval";
+  } else if (image === "/cursor/shears.png") {
+    currentCorsuer = "shears";
+  }
+};
+gameBoard.addEventListener("click", (event) => {
+  if (
+    currentCorsuer === "pickaxe" &&
+    (event.target.className.includes("stone") ||
+      event.target.className.includes("diamonds") ||
+      event.target.className.includes("gold"))
+  ) {
+    event.target.classList = "block sky";
+  } else if (
+    currentCorsuer === "axe" &&
+    event.target.className.includes("treeTrunk")
+  ) {
+    event.target.classList = "block sky";
+  } else if (
+    currentCorsuer === "shoval" &&
+    event.target.className.includes("earth")
+  ) {
+    event.target.classList = "block sky";
+  } else if (
+    currentCorsuer === "shears" &&
+    event.target.className.includes("leaves")
+  ) {
+    event.target.classList = "block sky";
+  }
+});
 
 const sky = createSky();
 const grass = createGrass();
