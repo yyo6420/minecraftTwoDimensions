@@ -1,4 +1,10 @@
 const gameBoard = document.getElementById("gameBoard");
+const toolsContainer = document.querySelector(".toolsContainer");
+let earthBlocksCounter = 0;
+let treeTrunkBlocksCounter = 0;
+let goldBlocksCounter = 0;
+let leavesBlocksCounter = 0;
+let leafBlock = undefined;
 let currentCorsuer = "default";
 
 const createSky = () => {
@@ -174,6 +180,16 @@ gameBoard.addEventListener("click", (event) => {
     event.target.className.includes("leaves")
   ) {
     event.target.classList = "block sky";
+    if (leafBlock === undefined) {
+      leafBlock = document.createElement("div");
+      leafBlock.classList = "block leaves";
+      leavesBlocksCounter++;
+      leafBlock.textContent = leavesBlocksCounter.toString();
+      toolsContainer.appendChild(leafBlock);
+    } else {
+      leavesBlocksCounter++;
+      leafBlock.textContent = leavesBlocksCounter.toString();
+    }
   }
 });
 
