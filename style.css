@@ -92,3 +92,8 @@ body {
 .toolsImage:hover {
     cursor: grab;
 }
+
+.resourceBlock {
+    display: flex;
+    gap: 0.1rem;
+}

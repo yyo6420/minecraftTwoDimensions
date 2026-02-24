@@ -1,10 +1,14 @@
 const gameBoard = document.getElementById("gameBoard");
 const toolsContainer = document.querySelector(".toolsContainer");
-let earthBlocksCounter = 0;
 let treeTrunkBlocksCounter = 0;
 let goldBlocksCounter = 0;
+let leafCounter = document.createElement("h2");
 let leavesBlocksCounter = 0;
 let leafBlock = undefined;
+let earthCounter = document.createElement("h2");
+let earthBlocksCounter = 0;
+let earthBlock = undefined;
+
 let currentCorsuer = "default";
 
 const createSky = () => {
@@ -175,6 +179,25 @@ gameBoard.addEventListener("click", (event) => {
     event.target.className.includes("earth")
   ) {
     event.target.classList = "block sky";
+    if (earthBlock === undefined) {
+      earthBlock = document.createElement("div");
+      earthBlock.className = "resourceBlock";
+
+      const earthImage = document.createElement("img");
+      earthImage.className = "toolsImage";
+      earthImage.src = "./cursor/earth.jpg";
+      earthImage.alt = "תמונה של אדמה";
+
+      earthBlocksCounter++;
+
+      earthCounter.textContent = earthBlocksCounter.toString();
+
+      earthBlock.append(earthImage, earthCounter);
+      toolsContainer.appendChild(earthBlock);
+    } else {
+      earthBlocksCounter++;
+      earthCounter.textContent = earthBlocksCounter.toString();
+    }
   } else if (
     currentCorsuer === "shears" &&
     event.target.className.includes("leaves")
@@ -182,13 +205,22 @@ gameBoard.addEventListener("click", (event) => {
     event.target.classList = "block sky";
     if (leafBlock === undefined) {
       leafBlock = document.createElement("div");
-      leafBlock.classList = "block leaves";
+      leafBlock.className = "resourceBlock";
+
+      const leafImage = document.createElement("img");
+      leafImage.className = "toolsImage";
+      leafImage.src = "./cursor/leaves.jpg";
+      leafImage.alt = "תמונה של עלים";
+
       leavesBlocksCounter++;
-      leafBlock.textContent = leavesBlocksCounter.toString();
+
+      leafCounter.textContent = leavesBlocksCounter.toString();
+
+      leafBlock.append(leafImage, leafCounter);
       toolsContainer.appendChild(leafBlock);
     } else {
       leavesBlocksCounter++;
-      leafBlock.textContent = leavesBlocksCounter.toString();
+      leafCounter.textContent = leavesBlocksCounter.toString();
     }
   }
 });
