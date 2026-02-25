@@ -1,6 +1,7 @@
 const gameBoard = document.getElementById("gameBoard");
 const toolsContainer = document.querySelector(".toolsContainer");
 let randomNumberOfTrees = Math.floor(Math.random() * (6 - 2 + 1)) + 2;
+let currentCorsuer = "default";
 let leafCounter = document.createElement("h2");
 let leavesBlocksCounter = 0;
 let leafBlock = undefined;
@@ -19,11 +20,9 @@ let stoneBlock = undefined;
 let goldCounter = document.createElement("h2");
 let goldBlocksCounter = 0;
 let goldBlock = undefined;
-let diamondCounter = document.createElement("h2");
-let diamondBlocksCounter = 0;
-let diamondBlock = undefined;
-
-let currentCorsuer = "default";
+let diamondsCounter = document.createElement("h2");
+let diamondsBlocksCounter = 0;
+let diamondsBlock = undefined;
 
 const createSky = () => {
   for (let skyBlock = 1; skyBlock <= 1800; skyBlock++) {
@@ -147,8 +146,8 @@ const createTree = () => {
   }
 };
 
-const placeDiamondRandomly = () => {
-  for (let diamond = 1; diamond <= 12; diamond++) {
+const placeDiamondsRandomly = () => {
+  for (let diamonds = 1; diamonds <= 15; diamonds++) {
     const randomPlace = Math.floor(Math.random() * (1680 - 901 + 1)) + 901;
     const block = document.getElementById(`block-${randomPlace}`);
     block.classList = "block diamonds";
@@ -156,7 +155,7 @@ const placeDiamondRandomly = () => {
 };
 
 const placeGoldRandomly = () => {
-  for (let goldBlock = 1; goldBlock <= 12; goldBlock++) {
+  for (let goldBlock = 1; goldBlock <= 15; goldBlock++) {
     const randomPlace = Math.floor(Math.random() * (1680 - 901 + 1)) + 901;
     const block = document.getElementById(`block-${randomPlace}`);
     block.classList = "block gold";
@@ -173,6 +172,20 @@ const changeCursor = (image) => {
     currentCorsuer = "shoval";
   } else if (image === "/cursor/shears.png") {
     currentCorsuer = "shears";
+  } else if (image === "./cursor/leaves.jpg") {
+    currentCorsuer = "leaves";
+  } else if (image === "./cursor/grass.jpg") {
+    currentCorsuer = "grass";
+  } else if (image === "./cursor/earth.jpg") {
+    currentCorsuer = "earth";
+  } else if (image === "./cursor/treeTrunk.jpg") {
+    currentCorsuer = "treeTrunk";
+  } else if (image === "./cursor/diamonds.png") {
+    currentCorsuer = "diamonds";
+  } else if (image === "./cursor/gold.png") {
+    currentCorsuer = "gold";
+  } else if (image === "./cursor/stone.jpg") {
+    currentCorsuer = "stone";
   }
 };
 gameBoard.addEventListener("click", (event) => {
@@ -192,6 +205,7 @@ gameBoard.addEventListener("click", (event) => {
         stoneImage.className = "toolsImage";
         stoneImage.src = "./cursor/stone.jpg";
         stoneImage.alt = "תמונה של אבן";
+        stoneImage.onclick = () => changeCursor("./cursor/stone.jpg");
 
         stoneBlocksCounter++;
         stoneCounter.textContent = stoneBlocksCounter.toString();
@@ -211,6 +225,7 @@ gameBoard.addEventListener("click", (event) => {
         goldImage.className = "toolsImage";
         goldImage.src = "./cursor/gold.png";
         goldImage.alt = "תמונה של זהב";
+        goldImage.onclick = () => changeCursor("./cursor/gold.png");
 
         goldBlocksCounter++;
         goldCounter.textContent = goldBlocksCounter.toString();
@@ -222,23 +237,24 @@ gameBoard.addEventListener("click", (event) => {
         goldCounter.textContent = goldBlocksCounter.toString();
       }
     } else {
-      if (diamondBlock === undefined) {
-        diamondBlock = document.createElement("div");
-        diamondBlock.className = "resourceBlock";
+      if (diamondsBlock === undefined) {
+        diamondsBlock = document.createElement("div");
+        diamondsBlock.className = "resourceBlock";
 
-        const diamondImage = document.createElement("img");
-        diamondImage.className = "toolsImage";
-        diamondImage.src = "./cursor/diamond.png";
-        diamondImage.alt = "תמונה של יהלום";
+        const diamondsImage = document.createElement("img");
+        diamondsImage.className = "toolsImage";
+        diamondsImage.src = "./cursor/diamonds.png";
+        diamondsImage.alt = "תמונה של יהלום";
+        diamondsImage.onclick = () => changeCursor("./cursor/diamonds.png");
 
-        diamondBlocksCounter++;
-        diamondCounter.textContent = diamondBlocksCounter.toString();
+        diamondsBlocksCounter++;
+        diamondsCounter.textContent = diamondsBlocksCounter.toString();
 
-        diamondBlock.append(diamondImage, diamondCounter);
-        toolsContainer.appendChild(diamondBlock);
+        diamondsBlock.append(diamondsImage, diamondsCounter);
+        toolsContainer.appendChild(diamondsBlock);
       } else {
-        diamondBlocksCounter++;
-        diamondCounter.textContent = diamondBlocksCounter.toString();
+        diamondsBlocksCounter++;
+        diamondsCounter.textContent = diamondsBlocksCounter.toString();
       }
     }
     event.target.classList = "block sky";
@@ -254,6 +270,7 @@ gameBoard.addEventListener("click", (event) => {
       treeTrunkImage.className = "toolsImage";
       treeTrunkImage.src = "./cursor/treeTrunk.jpg";
       treeTrunkImage.alt = "תמונה של גזע";
+      treeTrunkImage.onclick = () => changeCursor("./cursor/treeTrunk.jpg");
 
       treeTrunkBlocksCounter++;
       treeTrunkCounter.textContent = treeTrunkBlocksCounter.toString();
@@ -278,6 +295,7 @@ gameBoard.addEventListener("click", (event) => {
         earthImage.className = "toolsImage";
         earthImage.src = "./cursor/earth.jpg";
         earthImage.alt = "תמונה של אדמה";
+        earthImage.onclick = () => changeCursor("./cursor/earth.jpg");
 
         earthBlocksCounter++;
         earthCounter.textContent = earthBlocksCounter.toString();
@@ -297,6 +315,7 @@ gameBoard.addEventListener("click", (event) => {
         grassImage.className = "toolsImage";
         grassImage.src = "./cursor/grass.jpg";
         grassImage.alt = "תמונה של דשא";
+        grassImage.onclick = () => changeCursor("./cursor/grass.jpg");
 
         grassBlocksCounter++;
         grassCounter.textContent = grassBlocksCounter.toString();
@@ -317,21 +336,94 @@ gameBoard.addEventListener("click", (event) => {
       leafBlock = document.createElement("div");
       leafBlock.className = "resourceBlock";
 
-      const leafImage = document.createElement("img");
-      leafImage.className = "toolsImage";
-      leafImage.src = "./cursor/leaves.jpg";
-      leafImage.alt = "תמונה של עלים";
+      const leavesImage = document.createElement("img");
+      leavesImage.className = "toolsImage";
+      leavesImage.src = "./cursor/leaves.jpg";
+      leavesImage.alt = "תמונה של עלים";
+      leavesImage.onclick = () => changeCursor("./cursor/leaves.jpg");
 
       leavesBlocksCounter++;
       leafCounter.textContent = leavesBlocksCounter.toString();
 
-      leafBlock.append(leafImage, leafCounter);
+      leafBlock.append(leavesImage, leafCounter);
       toolsContainer.appendChild(leafBlock);
     } else {
       leavesBlocksCounter++;
       leafCounter.textContent = leavesBlocksCounter.toString();
     }
     event.target.classList = "block sky";
+  } else if (event.target.className.includes("sky")) {
+    if (currentCorsuer === "leaves") {
+      leavesBlocksCounter--;
+      leafCounter.textContent = leavesBlocksCounter.toString();
+      event.target.className = "block leaves";
+      if (leavesBlocksCounter === 0) {
+        toolsContainer.removeChild(leafBlock);
+        leafBlock = undefined;
+        currentCorsuer = "default";
+        document.body.style.cursor = "auto";
+      }
+    } else if (currentCorsuer === "grass") {
+      grassBlocksCounter--;
+      grassCounter.textContent = grassBlocksCounter.toString();
+      event.target.className = "block grass";
+      if (grassBlocksCounter === 0) {
+        toolsContainer.removeChild(grassBlock);
+        grassBlock = undefined;
+        currentCorsuer = "default";
+        document.body.style.cursor = "auto";
+      }
+    } else if (currentCorsuer === "earth") {
+      earthBlocksCounter--;
+      earthCounter.textContent = earthBlocksCounter.toString();
+      event.target.className = "block earth";
+      if (earthBlocksCounter === 0) {
+        toolsContainer.removeChild(earthBlock);
+        earthBlock = undefined;
+        currentCorsuer = "default";
+        document.body.style.cursor = "auto";
+      }
+    } else if (currentCorsuer === "treeTrunk") {
+      treeTrunkBlocksCounter--;
+      treeTrunkCounter.textContent = treeTrunkBlocksCounter.toString();
+      event.target.className = "block treeTrunk";
+      if (treeTrunkBlocksCounter === 0) {
+        toolsContainer.removeChild(treeTrunkBlock);
+        treeTrunkBlock = undefined;
+        currentCorsuer = "default";
+        document.body.style.cursor = "auto";
+      }
+    } else if (currentCorsuer === "diamonds") {
+      diamondsBlocksCounter--;
+      diamondsCounter.textContent = diamondsBlocksCounter.toString();
+      event.target.className = "block diamonds";
+      if (diamondsBlocksCounter === 0) {
+        toolsContainer.removeChild(diamondsBlock);
+        diamondsBlock = undefined;
+        currentCorsuer = "default";
+        document.body.style.cursor = "auto";
+      }
+    } else if (currentCorsuer === "gold") {
+      goldBlocksCounter--;
+      goldCounter.textContent = goldBlocksCounter.toString();
+      event.target.className = "block gold";
+      if (goldBlocksCounter === 0) {
+        toolsContainer.removeChild(goldBlock);
+        goldBlock = undefined;
+        currentCorsuer = "default";
+        document.body.style.cursor = "auto";
+      }
+    } else if (currentCorsuer === "stone") {
+      stoneBlocksCounter--;
+      stoneCounter.textContent = stoneBlocksCounter.toString();
+      event.target.className = "block stone";
+      if (stoneBlocksCounter === 0) {
+        toolsContainer.removeChild(stoneBlock);
+        stoneBlock = undefined;
+        currentCorsuer = "default";
+        document.body.style.cursor = "auto";
+      }
+    }
   }
 });
 
@@ -340,7 +432,7 @@ const grass = createGrass();
 const earth = createErth();
 const stone = createStone();
 const rock = createRock();
-const diamond = placeDiamondRandomly();
+const diamonds = placeDiamondsRandomly();
 const gold = placeGoldRandomly();
 for (let tree = 0; tree < randomNumberOfTrees; tree++) {
   createTree();

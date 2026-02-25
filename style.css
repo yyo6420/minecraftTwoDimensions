@@ -65,7 +65,7 @@ body {
 }
 
 .diamonds {
-    background: url("/elements/diamond.png");
+    background: url("/elements/diamonds.png");
     background-size: contain;
 }
 
